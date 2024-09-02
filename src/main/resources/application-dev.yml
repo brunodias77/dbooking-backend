@@ -4,6 +4,9 @@ spring:
     username: admin # Nome de usuário do banco de dados
     password: admin # Senha do banco de dados
     driver-class-name: org.postgresql.Driver # Driver JDBC do PostgreSQL
+  web:
+    resources:
+      static-locations: file:uploads
   jpa:
     hibernate:
       ddl-auto: update # Atualiza automaticamente o esquema do banco de dados
@@ -21,3 +24,5 @@ application:
       expiration: 86400000 # Tempo de expiração do token JWT (em milissegundos, aqui é 1 dia)
       refresh-token:
         expiration: 604800000 # Tempo de expiração do refresh token (em milissegundos, aqui é 7 dias)
+  file:
+    upload-dir: uploads

@@ -1,7 +1,7 @@
 package com.brunodias.dbooking.api.controllers;
 
-import com.brunodias.dbooking.application.services.interfaces.IUserService;
 import com.brunodias.dbooking.domain.entities.User;
+import com.brunodias.dbooking.domain.services.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

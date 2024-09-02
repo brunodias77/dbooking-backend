@@ -21,17 +21,16 @@ public class Room extends EntityBase {
     private String roomType;
     private BigDecimal roomPrice;
     private boolean isBooked = false;
-    @Lob
-    private Blob photo;
-    @OneToMany(mappedBy="room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private String photo;
+    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<BookedRoom> bookings;
 
     public Room() {
         this.bookings = new ArrayList<>();
     }
 
-    public void addBooking(BookedRoom booking){
-        if (bookings == null){
+    public void addBooking(BookedRoom booking) {
+        if (bookings == null) {
             bookings = new ArrayList<>();
         }
         bookings.add(booking);
@@ -39,5 +38,9 @@ public class Room extends EntityBase {
         isBooked = true;
         String bookingCode = RandomStringUtils.randomNumeric(10);
         booking.setBookingConfirmationCode(bookingCode);
+    }
+
+    public boolean getIsBooked() {
+        return isBooked;
     }
 }

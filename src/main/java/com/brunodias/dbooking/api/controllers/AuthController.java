@@ -5,8 +5,7 @@ import com.brunodias.dbooking.application.communications.requests.authentication
 import com.brunodias.dbooking.application.communications.responses.JwtResponse;
 import com.brunodias.dbooking.application.exceptions.UserAlreadyExistsException;
 import com.brunodias.dbooking.application.services.TokenService;
-import com.brunodias.dbooking.application.services.interfaces.IUserService;
-import com.brunodias.dbooking.domain.entities.User;
+import com.brunodias.dbooking.domain.services.IUserService;
 import com.brunodias.dbooking.infrastructure.configurations.security.users.ApplicationUserDetaillsImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

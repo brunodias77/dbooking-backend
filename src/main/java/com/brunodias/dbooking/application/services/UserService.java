@@ -2,9 +2,9 @@ package com.brunodias.dbooking.application.services;
 
 import com.brunodias.dbooking.application.communications.requests.authentication.RegisterUserRequest;
 import com.brunodias.dbooking.application.exceptions.UserAlreadyExistsException;
-import com.brunodias.dbooking.application.services.interfaces.IUserService;
 import com.brunodias.dbooking.domain.entities.Role;
 import com.brunodias.dbooking.domain.entities.User;
+import com.brunodias.dbooking.domain.services.IUserService;
 import com.brunodias.dbooking.infrastructure.repositories.RoleRepository;
 import com.brunodias.dbooking.infrastructure.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;

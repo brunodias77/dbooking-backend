@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
+@Table(name = "booked_rooms")
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookedRoom extends EntityBase{

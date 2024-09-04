@@ -21,7 +21,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
-@Entity(name = "users")
+@Entity
+@Table(name = "users")
 @NoArgsConstructor
 @Getter
 @Setter

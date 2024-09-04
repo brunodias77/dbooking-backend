@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -99,6 +100,18 @@ public class RoomService implements IRoomService {
     @Override
     public Optional<Room> getRoomById(UUID roomId) {
         return Optional.of(_roomRepository.findById(roomId).get());
+    }
+
+    @Override
+    public List<RoomResponseBase> getAvailableRooms(LocalDate checkInDate, LocalDate checkOutDate, String roomType) {
+        var rooms = _roomRepository.findAvailableRoomsByDatesAndType(checkInDate, checkOutDate, roomType);
+        var response = new ArrayList<RoomResponseBase>();
+        for (Room room : rooms){
+            String photoUrl = "http://localhost:8080" + room.getPhoto();
+            var newRoomResponse = new RoomResponseBase(room.getRoomType(), room.getRoomPrice(), room.getIsBooked(), photoUrl);
+            response.add(newRoomResponse);
+        }
+        return response;
     }
 
 }

@@ -36,8 +36,7 @@ public class UserService implements IUserService {
                 .phone(request.phone())
                 .email(request.email())
                 .password(passwordEncrypted).build();
-        Role userRole = _roleRepository.findByName("ROLE_USER").get();
-        userRole.setId(null);
+        var userRole = Role.builder().name("ROLE_USER").build();
         user.getRoles().add(userRole);
         return _userRepository.save(user);
     }

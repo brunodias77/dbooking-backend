@@ -26,6 +26,8 @@ public class SecurityConfig {
     private final ApplicationUserDetailsService _applicationUserDetailsService;
     private final JwtAuthEntryPoint _jwtAuthEntryPoint;
 
+
+
     @Bean
     public AuthTokenFilter authenticationTokenFilter() {
         return new AuthTokenFilter();

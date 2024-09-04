@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.Optional;
 
 public record AddNewRoomRequest(
-        MultipartFile photo,
-        String roomType,
-        BigDecimal roomPrice
-) {}
+                MultipartFile photo,
+                String roomType,
+                BigDecimal roomPrice) {
+}

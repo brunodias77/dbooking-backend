@@ -1,19 +1,15 @@
 package com.brunodias.dbooking.application.communications.responses.rooms;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public record RoomResponseBase(
         String roomType,
         BigDecimal roomPrice,
         boolean isBooked,
-        String photo
-// List<BookingResponse> bookings
-) {
-    public RoomResponseBase(String roomType, BigDecimal roomPrice) {
-        this(roomType, roomPrice, false, null);
-    }
+        String location,
+        String description,
+        List<String> photos,
+        List<Integer> ratings) {
 
-    public RoomResponseBase(String roomType, BigDecimal roomPrice, boolean isBooked) {
-        this(roomType, roomPrice, isBooked, null);
-    }
 }

@@ -21,4 +21,18 @@ public interface IRoomRepository extends JpaRepository<Room, UUID> {
             ")")
 
     List<Room> findAvailableRoomsByDatesAndType(LocalDate checkInDate, LocalDate checkOutDate, String roomType);
+//@Query("SELECT r FROM Room r " +
+//        "LEFT JOIN FETCH r.photos " +
+//        "LEFT JOIN FETCH r.ratings " +
+//        "WHERE r.roomType LIKE %:roomType% " +
+//        "AND r.id NOT IN (" +
+//        "  SELECT br.room.id FROM BookedRoom br " +
+//        "  WHERE br.checkInDate < :checkOutDate " +
+//        "  AND br.checkOutDate > :checkInDate" +
+//        ")")
+//List<Room> findAvailableRoomsByDatesAndType(
+//        @Param("checkInDate") LocalDate checkInDate,
+//        @Param("checkOutDate") LocalDate checkOutDate,
+//        @Param("roomType") String roomType
+//);
 }

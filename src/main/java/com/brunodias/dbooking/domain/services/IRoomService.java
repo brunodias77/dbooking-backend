@@ -14,11 +14,13 @@ import java.util.UUID;
 
 public interface IRoomService {
 
-    Room addNewRoom(String roomType, BigDecimal roomPrice, MultipartFile file) throws SQLException, IOException;
+    RoomResponseBase addNewRoom(String roomType, BigDecimal roomPrice, String location, String description,
+            List<MultipartFile> photos, List<Integer> ratings) throws SQLException, IOException;
 
     List<String> getAllRoomTypes();
 
     List<RoomResponseBase> getAllRooms();
+
     void deleteRoom(UUID roomId);
 
     RoomResponseBase updateRoom(UUID roomId, String roomType, BigDecimal roomPrice, MultipartFile photo)
@@ -27,6 +29,5 @@ public interface IRoomService {
     Optional<Room> getRoomById(UUID roomId);
 
     List<RoomResponseBase> getAvailableRooms(LocalDate checkInDate, LocalDate checkOutDate, String roomType);
-
 
 }

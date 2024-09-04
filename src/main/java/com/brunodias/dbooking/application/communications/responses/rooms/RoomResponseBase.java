@@ -9,8 +9,8 @@ public record RoomResponseBase(
         String photo
 // List<BookingResponse> bookings
 ) {
-    public RoomResponseBase( String roomType, BigDecimal roomPrice) {
-        this( roomType, roomPrice, false, null);
+    public RoomResponseBase(String roomType, BigDecimal roomPrice) {
+        this(roomType, roomPrice, false, null);
     }
 
     public RoomResponseBase(String roomType, BigDecimal roomPrice, boolean isBooked) {

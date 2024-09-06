@@ -15,17 +15,12 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookedRoom extends EntityBase{
+
     @Column(name = "check_in")
     private LocalDate checkInDate;
 
     @Column(name = "check_out")
     private LocalDate checkOutDate;
-
-    @Column(name = "guest_fullName")
-    private String guestFullName;
-
-    @Column(name = "guest_email")
-    private String guestEmail;
 
     @Column(name = "adults")
     private int NumOfAdults;
@@ -40,6 +35,10 @@ public class BookedRoom extends EntityBase{
     private String bookingConfirmationCode;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "room_id", nullable = false)
     private Room room;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }

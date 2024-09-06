@@ -3,6 +3,7 @@ package com.brunodias.dbooking.domain.entities;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -15,11 +16,16 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Room extends EntityBase {
 
-    private String roomType;
-
     private BigDecimal roomPrice;
+
+    private int numberOfGuest;
+
+    private int doubleBed;
+
+    private int singleBed;
 
     private boolean isBooked = false;
 
@@ -33,16 +39,13 @@ public class Room extends EntityBase {
     private List<String> photos = new ArrayList<>();
 
     @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<BookedRoom> bookings;
+    private List<BookedRoom> bookings = new ArrayList<>();
 
     @ElementCollection
     @CollectionTable(name = "room_ratings", joinColumns = @JoinColumn(name = "room_id"))
     @Column(name = "rating")
     private List<Integer> ratings = new ArrayList<>();
 
-    public Room() {
-        this.bookings = new ArrayList<>();
-    }
 
     public void addBooking(BookedRoom booking) {
         if (bookings == null) {

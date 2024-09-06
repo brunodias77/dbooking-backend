@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IRoomService {
@@ -22,4 +23,8 @@ public interface IRoomService {
                      List<MultipartFile> photos,
                      List<Integer> ratings
                      ) throws SQLException, IOException;
+
+    List<RoomDTO> getAllRooms();
+
+    List<RoomDTO> getAvailableRooms(LocalDate checkInDate, LocalDate checkOutDate, int numberOfGuest);
 }

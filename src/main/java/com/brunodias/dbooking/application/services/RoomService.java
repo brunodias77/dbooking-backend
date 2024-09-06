@@ -8,12 +8,15 @@ import com.brunodias.dbooking.domain.services.IRoomService;
 import com.brunodias.dbooking.infrastructure.repositories.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -53,5 +56,28 @@ public class RoomService implements IRoomService {
         var roomSaved = _roomRepository.save(room);
         var roomDTO = RoomMapper.roomToRoomDTO(roomSaved);
         return roomDTO;
+    }
+
+    @Transactional
+    @Override
+    public List<RoomDTO> getAllRooms() {
+        var rooms = _roomRepository.findAllRoomsWithPhotosAndRatings();
+        var listRoomDTO = new ArrayList<RoomDTO>();
+        for(Room room : rooms){
+            var roomDTO = RoomMapper.roomToRoomDTO(room);
+            listRoomDTO.add(roomDTO);
+        }
+        return listRoomDTO;
+    }
+
+    @Override
+    public List<RoomDTO> getAvailableRooms(LocalDate checkInDate, LocalDate checkOutDate, int numberOfGuest) {
+        var rooms = _roomRepository.findAvailableRooms(numberOfGuest, checkOutDate, checkInDate);
+        var listRoomDTO = new ArrayList<RoomDTO>();
+        for(Room room : rooms){
+            var roomDTO = RoomMapper.roomToRoomDTO(room);
+            listRoomDTO.add(roomDTO);
+        }
+        return listRoomDTO;
     }
 }

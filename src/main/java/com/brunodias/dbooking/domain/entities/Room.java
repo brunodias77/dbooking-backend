@@ -23,9 +23,9 @@ public class Room extends EntityBase {
 
     private int numberOfGuest;
 
-    private int doubleBed;
+    private int doubleBed = 0;
 
-    private int singleBed;
+    private int singleBed = 0;
 
     private boolean isBooked = false;
 
@@ -33,15 +33,15 @@ public class Room extends EntityBase {
 
     private String description;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "room_photos", joinColumns = @JoinColumn(name = "room_id"))
     @Column(name = "photo")
     private List<String> photos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
     private List<BookedRoom> bookings = new ArrayList<>();
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "room_ratings", joinColumns = @JoinColumn(name = "room_id"))
     @Column(name = "rating")
     private List<Integer> ratings = new ArrayList<>();

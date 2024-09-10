@@ -9,6 +9,8 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 public interface IRoomService {
     
@@ -27,4 +29,8 @@ public interface IRoomService {
     List<RoomDTO> getAllRooms();
 
     List<RoomDTO> getAvailableRooms(LocalDate checkInDate, LocalDate checkOutDate, int numberOfGuest);
+
+    Optional<Room> getRoomById(UUID roomId);
+
+
 }

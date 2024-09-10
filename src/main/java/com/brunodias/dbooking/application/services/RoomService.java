@@ -18,6 +18,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +29,9 @@ public class RoomService implements IRoomService {
     private final IFileService _fileService;
 
     @Override
-    public RoomDTO addNewRoom(BigDecimal roomPrice, int numberOfGuest, int doubleBed, int singleBed, String description, String location, boolean isBooked, List<MultipartFile> photos, List<Integer> ratings) throws SQLException, IOException {
+    public RoomDTO addNewRoom(BigDecimal roomPrice, int numberOfGuest, int doubleBed, int singleBed, String description,
+            String location, boolean isBooked, List<MultipartFile> photos, List<Integer> ratings)
+            throws SQLException, IOException {
 
         var room = new Room();
         room.setRoomPrice(roomPrice);
@@ -63,7 +67,7 @@ public class RoomService implements IRoomService {
     public List<RoomDTO> getAllRooms() {
         var rooms = _roomRepository.findAllRoomsWithPhotosAndRatings();
         var listRoomDTO = new ArrayList<RoomDTO>();
-        for(Room room : rooms){
+        for (Room room : rooms) {
             var roomDTO = RoomMapper.roomToRoomDTO(room);
             listRoomDTO.add(roomDTO);
         }
@@ -74,10 +78,15 @@ public class RoomService implements IRoomService {
     public List<RoomDTO> getAvailableRooms(LocalDate checkInDate, LocalDate checkOutDate, int numberOfGuest) {
         var rooms = _roomRepository.findAvailableRooms(numberOfGuest, checkOutDate, checkInDate);
         var listRoomDTO = new ArrayList<RoomDTO>();
-        for(Room room : rooms){
+        for (Room room : rooms) {
             var roomDTO = RoomMapper.roomToRoomDTO(room);
             listRoomDTO.add(roomDTO);
         }
         return listRoomDTO;
+    }
+
+    @Override
+    public Optional<Room> getRoomById(UUID roomId) {
+        return Optional.of(_roomRepository.findById(roomId).get());
     }
 }

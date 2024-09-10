@@ -63,45 +63,5 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // @Bean
-    // public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    // http.csrf(AbstractHttpConfigurer::disable)
-    // .exceptionHandling(
-    // exception -> exception.authenticationEntryPoint(_jwtAuthEntryPoint))
-    // .sessionManagement(session ->
-    // session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-    // .authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll());
-    // http.authenticationProvider(authenticationProvider());
-    // http.addFilterBefore(authenticationTokenFilter(),
-    // UsernamePasswordAuthenticationFilter.class);
-    // return http.build();
-    // }
 
-    // @Bean
-    // public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    // http.csrf(AbstractHttpConfigurer::disable) // Desabilita proteção CSRF, pois
-    // usaremos autenticação JWT
-    // .exceptionHandling(
-    // exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint)) // Define
-    // o EntryPoint para lidar com erros de autenticação
-    // .sessionManagement(session ->
-    // session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Define a
-    // política de criação de sessões como stateless (sem estado)
-    // .authorizeHttpRequests(auth -> auth
-    // .requestMatchers("/auth/**", "/rooms/**", "/bookings/**")
-    // .permitAll() // Permite acesso público às URLs de autenticação, quartos e
-    // reservas
-    // .requestMatchers("/roles/**").hasRole("ADMIN") // Restringe o acesso às URLs
-    // de roles somente para usuários com a role ADMIN
-    // .anyRequest().authenticated()); // Qualquer outra requisição precisa estar
-    // autenticada
-    //
-    // http.authenticationProvider(authenticationProvider()); // Define o provedor
-    // de autenticação a ser utilizado
-    // http.addFilterBefore(authenticationTokenFilter(),
-    // UsernamePasswordAuthenticationFilter.class); // Adiciona o filtro de
-    // autenticação JWT antes do filtro de autenticação padrão
-    //
-    // return http.build();
-    // }
 }

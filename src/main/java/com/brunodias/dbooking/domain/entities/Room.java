@@ -38,14 +38,13 @@ public class Room extends EntityBase {
     @Column(name = "photo")
     private List<String> photos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
-    private List<BookedRoom> bookings = new ArrayList<>();
+    @OneToMany(mappedBy = "room", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<BookedRoom> bookings;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "room_ratings", joinColumns = @JoinColumn(name = "room_id"))
     @Column(name = "rating")
     private List<Integer> ratings = new ArrayList<>();
-
 
     public void addBooking(BookedRoom booking) {
         if (bookings == null) {
